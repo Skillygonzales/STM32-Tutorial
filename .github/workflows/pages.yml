@@ -1,0 +1,70 @@
+
+name: Deploy STM32 PCB Viewer
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare website
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p dist
+          cp site/index.html dist/index.html
+
+          # Collect Altium project files
+          find . -type f \( \
+            -iname "*.PrjPcb" -o \
+            -iname "*.PcbDoc" -o \
+            -iname "*.SchDoc" \
+          \) -not -path "./.git/*" \
+            -not -path "./site/*" \
+            -print0 > /tmp/altium-files
+
+          if [ ! -s /tmp/altium-files ]; then
+            echo "No Altium design files found!"
+            exit 1
+          fi
+
+          SHA="${GITHUB_SHA::12}"
+
+          # Create ZIP with the original folder structure
+          xargs -0 zip -q "dist/design-${SHA}.zip" < /tmp/altium-files
+
+          # Insert ZIP filename into HTML
+          sed -i "s/__SHA__/${SHA}/g" dist/index.html
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4

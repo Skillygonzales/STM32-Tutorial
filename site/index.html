@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>STM32 PCB | Interactive Viewer</title>
+
+  <!-- Altium 365 interactive viewer -->
+  <script src="https://viewer.altium.com/client/static/js/embed.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #101820;
+      color: #f7fafc;
+      font-family: system-ui, Arial, sans-serif;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 0 0 10px;
+    }
+
+    p {
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .altium-ecad-viewer {
+      width: 100%;
+      height: 720px;
+      min-height: 720px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: white;
+    }
+
+    iframe.altium-web-viewer,
+    .altium-ecad-viewer iframe {
+      display: block !important;
+      width: 100% !important;
+      height: 720px !important;
+      min-height: 720px !important;
+      max-height: none !important;
+      border: none !important;
+    }
+
+    a {
+      color: #8cc8ff;
+    }
+
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .altium-ecad-viewer {
+        height: 600px;
+        min-height: 600px;
+      }
+
+      iframe.altium-web-viewer,
+      .altium-ecad-viewer iframe {
+        height: 600px !important;
+        min-height: 600px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <header>
+      <h1>STM32 PCB Design</h1>
+
+      <p>
+        Interactive schematic, PCB layout and 3D model.
+        Designed in Altium Designer.
+        Automatically updated from GitHub.
+      </p>
+    </header>
+
+    <div
+      class="altium-ecad-viewer"
+      data-project-src="https://skillygonzales.github.io/STM32-Tutorial/design-__SHA__.zip"
+      data-enabled-views="sch,pcb,3d,bom"
+      data-active-view="3d">
+
+      <a href="https://www.altium.com/viewer">
+        PCB File Viewer by Altium
+      </a>
+
+    </div>
+
+    <footer>
+      STM32 PCB Design |
+      Altium Designer |
+      GitHub Pages
+    </footer>
+
+  </main>
+</body>
+</html>
