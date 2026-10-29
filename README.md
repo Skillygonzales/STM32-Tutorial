@@ -2,8 +2,6 @@
 
 This repository contains my STM32-based PCB design project, developed while following the [STM32 PCB Design Tutorial Series](https://www.youtube.com/playlist?list=PL3aaAq2OJU5HcbClqrOhqBDozF7HmxV-s).
 
-The project is still in progress and serves as a practical way to improve my PCB design skills using Altium Designer.
-
 ## Interactive PCB Viewer
 
 The schematic and interactive 3D PCB view are available through GitHub Pages:
@@ -29,9 +27,3 @@ For this project, I designed a **4-layer PCB** using Altium Designer, learning a
 - Maintaining ground plane continuity and avoiding unnecessary splits
 - Defining PCB cutout regions
 - Adding ground stitching vias
-
-## Project Status
-
-🚧 **Work in Progress**
-
-I am continuing to follow the tutorial series and gradually improving my understanding of multilayer PCB design, signal integrity, and good layout practices.
